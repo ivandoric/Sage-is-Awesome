@@ -1,3 +1,100 @@
 body {
     background: #fff;
 }
+
+.Modal {
+    position: fixed;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+
+    border: none;
+    padding: 0;
+    display: none;
+    z-index: 9999;
+    background: rgba(0,0,0,0.5);
+    overflow-y: auto;
+
+    &-header {
+        margin-bottom: rem-calc(25);
+    }
+
+    &.is-active {
+        display: flex;
+    }
+
+    &.align-top {
+        justify-content: flex-start;
+    }
+
+    &-inner {
+        padding: rem-calc(50) rem-calc(40);
+        box-shadow: 0 16px 64px -32px rgba(0,0,0,0.32);
+        background: #fff;
+        position: relative;
+        width: 100%;
+    }
+
+    // Native
+    &::backdrop { background: rgba(#000, 0.5); }
+
+    // Polyfill
+    & + .backdrop { background: rgba(#000, 0.5); }
+
+    &-close-button {
+        position: absolute;
+        top: rem-calc(20);
+        right: rem-calc(20);
+        outline: none!important;
+        font-size: rem-calc(40);
+        cursor: pointer;
+    }
+
+    @include breakpoint(medium) {
+        &-inner {
+            padding: rem-calc(100);
+        }
+
+        &-close-button {
+            top: rem-calc(40);
+            right: rem-calc(40);
+        }
+    }
+
+    @include breakpoint(large) {
+        &-inner {
+            width: 1024px;
+        }
+
+
+        &-md {
+            .Modal-inner{
+                width: 625px;
+            }
+        }
+
+        &-lg {
+            .Modal-inner{
+                width: 885px;
+            }
+        }
+
+        &-big-padding .Modal-inner {
+            padding: rem-calc(140)
+        }
+
+        &-small-padding .Modal-inner {
+            padding: rem-calc(50)
+        }
+    }
+
+    &.open {
+        display: block !important;
+    }
+}
+
+

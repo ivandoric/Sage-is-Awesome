@@ -18,5 +18,30 @@
         @endwhile
 
         {!! get_the_posts_navigation() !!}
+
+        <div class="margin-top-3">
+            <button class="js-modal-trigger button" data-modal="#modal01">
+                Open modal
+            </button>
+
+            <button class="js-modal-trigger button" data-modal="#modal02">
+                Open modal
+            </button>
+
+            @modal(['id' => 'modal01'])
+                @slot('title')
+                    This is the title of our modal
+                @endslot
+                This is a text that is going to go in the Slot
+            @endmodal
+
+            @component('components.modal', ['id' => 'modal02'])
+                @slot('title')
+                    dsfsadfdsfa
+                @endslot
+                asfassad
+            @endcomponent
+
+        </div>
     </div>
 @endsection

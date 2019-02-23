@@ -1,24 +1,47 @@
-// import external dependencies
-import 'jquery';
+/* eslint-disable */
 
-// Import everything from autoload
-import './autoload/**/*'
+/*
+* Polyfills go here
+*/
 
-// import local dependencies
-import Router from './util/Router';
-import common from './routes/common';
-import home from './routes/home';
-import aboutUs from './routes/about';
+/*
+* Imports go here
+*/
 
-/** Populate Router instance with DOM routes */
-const routes = new Router({
-  // All pages
-  common,
-  // Home page
-  home,
-  // About Us page, note the change from about-us to aboutUs.
-  aboutUs,
-});
+import Hello from './components/hello'
+import Modal from './components/modal'
 
-// Load Events
-jQuery(document).ready(() => routes.loadEvents());
+/*
+* Define components and initialize them if they exist
+*/
+
+
+const components = [
+    {
+        class: Hello,
+        selector: '.js-hello'
+    },
+    {
+        class: Modal,
+        selector: '.js-modal-trigger'
+    },
+]
+
+components.forEach(component => {
+    if (document.querySelector(component.selector) !== null)
+        document.querySelectorAll(component.selector).forEach(element => new component.class(element, component.options))
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
